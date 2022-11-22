@@ -14,4 +14,18 @@ class Post(models.Model):
   def __str__(self):
     return self.title
   
+  
+class Result(models.Model):
+    image = models.ImageField(blank=True)
+    answer = models.CharField(max_length=10)
+    result = models.CharField(max_length=10)
+    pub_date = models.DateTimeField('date published')
+
+class AImodel(models.Model):
+    ai_file = models.FileField(upload_to='model/',blank=True)
+    ai_version = models.CharField(max_length=50,default=1.0)
+    is_selected = models.BooleanField(default=False)
+    created = models.DateField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+  
 

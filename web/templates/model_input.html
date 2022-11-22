@@ -1,0 +1,39 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+
+
+    <h2>모델 리스트</h2>
+    <div>
+    <table border="1">
+        <th>모델명</th>
+        <th>버젼</th>
+        <th>선택여부</th>
+        <th>생성날짜</th>
+        {% for model in models %}
+        <tr>
+            <td>{{model.ai_file}}</td>
+            <td>{{model.ai_version}}</td>
+            <td>{{model.is_selected}}</td>
+            <td>{{model.created}}</td>
+        </tr>
+
+        {% endfor %}
+    
+
+
+        </table>
+</div>
+<form action="upload" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>모델 파일 업로드</h1></legend>
+        <input name="files" type="file" >
+        <legend>버젼</legend>
+        <input name="num" type="number" >
+    </fieldset>
+    <div><input type="submit" value="업로드"></div>
+</form>
+
