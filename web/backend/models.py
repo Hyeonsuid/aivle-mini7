@@ -1,4 +1,7 @@
 from django.db import models
+from django.conf import settings
+from django.dispatch import receiver
+import os, uuid
 
 # Create your models here.
 class Post(models.Model):
@@ -29,3 +32,29 @@ class AImodel(models.Model):
     updated = models.DateTimeField(auto_now=True)
   
 
+@receiver(models.signals.post_delete, sender=Post)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+  if instance.file:
+    if os.path.isfile(instance.file.path):
+      os.remove(instance.file.path)
+
+@receiver(models.signals.pre_save, sender=Post)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+  if not instance.pk:
+    return False
+  try:
+    old_file = Post.objects.get(pk=instance.pk).file
+  except Post.DoesNotExist:
+    return False
+
+  new_file = instance.file
+  if not old_file == new_file:
+    if os.path.isfile(old_file.path):
+      os.remove(old_file.path)
+  
+
+class Statistic(models.Model):
+  id = models.BigAutoField(primary_key=True)
+  model = models.CharField(max_length=50)
+  count = models.IntegerField()
+  hit = models.IntegerField()
