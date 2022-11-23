@@ -13,6 +13,7 @@ from keras.models import load_model
 from keras.preprocessing import image
 # from pybo.model import Result
 from .models import Result
+from backend.models import Post
 
 # Create your views here.
 
@@ -38,7 +39,8 @@ def upload(request):
             class_names = np.array(class_names)
 
             #todo 모델 로딩
-            model_path = './model/sign_model.h5'# model위치를 setting에 정의해놨으니 활용해서 채워보세요. 위치는 본인이 원하는 다른곳에 해도 됩니다.
+            # model_path = './model/sign_model.h5'# model위치를 setting에 정의해놨으니 활용해서 채워보세요. 위치는 본인이 원하는 다른곳에 해도 됩니다.
+            model_path = Post.objects.get(used=True).file.path
             model = load_model(model_path)
 
             #todo history 저장을 위해 객체에 담아서 DB에 저장한다.
