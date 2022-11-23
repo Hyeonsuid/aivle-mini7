@@ -55,7 +55,7 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
   
 
 class Statistic(models.Model):
-  id = models.BigAutoField(primary_key=True)
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   model = models.CharField(max_length=50)
   count = models.IntegerField()
   hit = models.IntegerField()
