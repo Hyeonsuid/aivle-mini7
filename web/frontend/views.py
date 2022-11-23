@@ -22,9 +22,6 @@ logger = logging.getLogger('mylogger')
 def index(request):
     return render(request, 'index.html')
 
-
-
-
 def upload(request):
     result_list = []
     count = 0
