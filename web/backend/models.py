@@ -5,10 +5,12 @@ import os, uuid
 
 # Create your models here.
 class Post(models.Model):
-  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+  # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+  id = models.BigAutoField(primary_key=True)
   title = models.CharField('모델명', max_length=50)
   description = models.CharField('설명', max_length=100, blank=True, help_text='설명을 적어주세요.')
-  upload = models.FileField(max_length=254, blank=True)
+  file = models.FileField(max_length=254, blank=True)
+  used = models.BooleanField(default=False, verbose_name='운영중', unique=True)
   create_dt = models.DateTimeField('생성시간', auto_now_add=True)
   update_dt = models.DateTimeField('수정시간', auto_now=True)
 
@@ -56,6 +58,6 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
 
 class Statistic(models.Model):
   id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-  # model = models.CharField(max_length=50)
+  model = models.CharField(max_length=50)
   count = models.IntegerField()
   hit = models.IntegerField()
