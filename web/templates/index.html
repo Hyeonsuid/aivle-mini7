@@ -1,0 +1,43 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+</head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<form action="upload" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <section>
+        <div id='block'>
+    <div id="copyNode0">
+        <fieldset>
+            <legend><h1>파일 업로드</h1></legend>
+            <input name="files" type="file" >
+        </fieldset>
+        <div>
+        정답 : <input name="answer" type="text">
+        </div>
+    </div>
+</div>
+    <input type="submit" value="업로드" multiple>
+    </section> 
+</form>
+
+
+<input type='button' value='추가하기' onclick='deepCopy()'/>
+
+
+<script>
+    let idNum = 0;
+    function deepCopy(){
+        const testDiv = document.getElementById('copyNode0');
+        
+        const newNode = testDiv.cloneNode(true);
+        idNum++;
+        newNode.id = 'copyNode' + idNum;
+        
+
+        testDiv.after(newNode)
+    }
+
+</script>
+

@@ -1,77 +1,108 @@
 li a {
-    color: green;
+  color: green;
 }
 body {width: 300px;margin: 50px auto;}
 
 img {
-  border: 1px #ddd solid;
-  border-radius:5px;
-  
+border: 1px #ddd solid;
+border-radius:5px;
+height: 200px;
+width: 200px;
+aspect-ratio: auto 200 / 200;
+
 }
 form{
-    width: 300px;
-    margin: 50px auto;
-    /* display: flex; */
+  width: 300px;
+  margin: 50px auto;
+  display: flex;
 }
 
 fieldset{
-    border: 1px #ddd solid;
-    margin-bottom: 20px;
-    border-radius: 5px;
+  border: 1px #ddd solid;
+  margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 fieldset h1{
-    font-size:20px;
-    color:#2A6041
-    ;
+  font-size:20px;
+  color:#2A6041;
 }
 
 input[type=file]{
-    color:#aaa;
+  color:#aaa;
 }
 
 input[type=file]::file-selector-button {
-  width: 150px;
-  height: 30px;
-  background: #2A6041;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  cursor: pointer;
-    color:#fff;
-  &:hover {
-    background: rgb(77,77,77);
-    color: #fff;
-  }
+width: 150px;
+height: 30px;
+background: #2A6041;
+border: 1px solid #ddd;
+border-radius: 5px;
+cursor: pointer;
+  color:#fff;
+/* &:hover {
+  background: rgb(77,77,77);
+  color: #fff;
+} */
 }
 
 input[type=text]{
-    border: 1px #ddd solid;
-    border-radius: 5px;
-    font-size: 14px;
-    height: 30px;
-    line-height: 30px;
-    padding: 0 10px;
-    width: 85%;
+  border: 1px #ddd solid;
+  border-radius: 5px;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  width: 85%;
+}
+
+input[type=add]{
+border:1px #aaa solid;
+background: white;
+
 }
 
 input[type=submit]{
 border: 1px #ddd solid;
-    background: #2A6041;
-  color:#fff;
-  font-weight:bold;
-  font-size:14px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin-top: 10px;
-    width: 100%;
+background: #2A6041;
+color:#fff;
+font-weight:bold;
+font-size:14px;
+padding: 10px 15px;
+border-radius: 5px;
+margin-top: 10px;
+width: 100%;
+}
+
+div#block{
+  display: block;
 }
 
 div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #333;
-    font-size: 15px;
-    margin-bottom:10px;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-size: 15px;
+  margin-bottom:10px;
+}
+
+div.total-box {
+margin: 10px;
+background: #edf8e7;
+border-radius: 10px;
+overflow: hidden;
+border: 1px #ddd solid;
+padding: 10px 10px 0px;
+}
+
+div.one-box {
+display: flex;
+flex-wrap: wrap;
+padding: 20px;
+}
+
+
+span.wrap-box{
+  display: flex;
 }
 
