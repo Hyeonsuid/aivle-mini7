@@ -74,3 +74,10 @@ def upload(request):
     
     return render(request, 'result.html', context) 
 
+
+
+
+
+
+def index_v3(request):
+    return render(request, 'index_v3.html')
