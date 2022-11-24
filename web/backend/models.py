@@ -31,8 +31,9 @@ class AImodel(models.Model):
     ai_file = models.FileField(upload_to='model/',blank=True)
     ai_version = models.CharField(max_length=50,default=1.0)
     is_selected = models.BooleanField(default=False)
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+ 
+    
+    
   
 
 @receiver(models.signals.post_delete, sender=Post)
@@ -54,3 +55,10 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
   if not old_file == new_file:
     if os.path.isfile(old_file.path):
       os.remove(old_file.path)
+  
+
+class Statistic(models.Model):
+  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+  model = models.CharField(max_length=50)
+  count = models.IntegerField()
+  hit = models.IntegerField()
