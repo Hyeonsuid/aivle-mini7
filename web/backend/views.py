@@ -5,6 +5,8 @@ from .models import AImodel
 logger = logging.getLogger('mylogger')
 # Create your views here.
 
+from .models import Post
+
 
 def index(request):
     #서비스 처리 
@@ -33,4 +35,4 @@ def upload(request):
         test = request.GET['test']
         logger.error(('Something went wrong!!',test))
 
-    return redirect('backend:index')  
+    return redirect('backend:index')

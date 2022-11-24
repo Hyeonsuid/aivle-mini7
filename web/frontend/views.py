@@ -35,9 +35,8 @@ def upload(request):
             class_names = list(string.ascii_lowercase)
             class_names = np.array(class_names)
 
-            #todo 모델 로딩
-            # model_path = './model/sign_model.h5'# model위치를 setting에 정의해놨으니 활용해서 채워보세요. 위치는 본인이 원하는 다른곳에 해도 됩니다.
-            model_path = Post.objects.get(used=True).file.path
+            model_path = './model/sign_model.h5'
+            # model_path = Post.objects.get(used=True).file.path
             model = load_model(model_path)
 
             #todo history 저장을 위해 객체에 담아서 DB에 저장한다.
@@ -46,6 +45,7 @@ def upload(request):
             result.answer = request.POST.getlist('answer')[count] # answer를 채워봅시다.
             result.image = file # image를 채워봅시다.
             result.pub_date = timezone.datetime.now()
+            result.is_answer_check = False
             result.save()
 
             img_path = result.image.url
@@ -56,10 +56,10 @@ def upload(request):
             pred = model.predict(test_sign)
             pred = pred.argmax(axis=1)
             result.result = class_names[pred][0]#예측결과
-            # if(result.result == result.answer):
-            #     is_check_list.append(True) 
-            # else:
-            #     is_check_list.append(False) 
+            if(result.result == result.answer):
+                result.is_answer_check = True
+            else:
+                result.is_answer_check = False
             result.save() 
             result_list.append(result)
             count+=1
